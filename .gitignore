@@ -13,3 +13,7 @@
 *.vsidx
 /.vs/epicuro/config/applicationhost.config
 *.sqlite-journal
+/.vs/epicuro/v17/.wsuo
+/.vs/epicuro/v17/DocumentLayout.json
+/.vs/VSWorkspaceState.json
+/.vs/epicuro/v17/DocumentLayout.backup.json
