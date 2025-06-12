@@ -1,0 +1,648 @@
+<!DOCTYPE html>
+<html lang="es" charset="UTF-8">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Epicuro - Filósofo del Hedonismo y la Ataraxia</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Georgia', serif;
+            line-height: 1.6;
+            color: #2c3e50;
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            overflow-x: hidden;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 2rem 0;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+            header::before {
+                content: '';
+                position: absolute;
+                top: -50%;
+                left: -50%;
+                width: 200%;
+                height: 200%;
+                background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%);
+                animation: float 6s ease-in-out infinite;
+            }
+
+        @keyframes float {
+            0%, 100% {
+                transform: translateY(0px) rotate(0deg);
+            }
+
+            50% {
+                transform: translateY(-20px) rotate(180deg);
+            }
+        }
+
+        .hero-title {
+            font-size: 3.5rem;
+            font-weight: bold;
+            margin-bottom: 0.5rem;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero-subtitle {
+            font-size: 1.3rem;
+            font-style: italic;
+            opacity: 0.9;
+            position: relative;
+            z-index: 1;
+        }
+
+        .nav-menu {
+            background: rgba(255,255,255,0.95);
+            backdrop-filter: blur(10px);
+            padding: 1rem 0;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 20px rgba(0,0,0,0.1);
+        }
+
+        .nav-links {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 2rem;
+        }
+
+            .nav-links a {
+                color: #667eea;
+                text-decoration: none;
+                font-weight: 600;
+                padding: 0.5rem 1rem;
+                border-radius: 25px;
+                transition: all 0.3s ease;
+                position: relative;
+                overflow: hidden;
+            }
+
+                .nav-links a::before {
+                    content: '';
+                    position: absolute;
+                    top: 0;
+                    left: -100%;
+                    width: 100%;
+                    height: 100%;
+                    background: linear-gradient(90deg, transparent, rgba(102,126,234,0.2), transparent);
+                    transition: left 0.5s;
+                }
+
+                .nav-links a:hover::before {
+                    left: 100%;
+                }
+
+                .nav-links a:hover {
+                    background: linear-gradient(135deg, #667eea, #764ba2);
+                    color: white;
+                    transform: translateY(-2px);
+                }
+
+        .section {
+            margin: 3rem 0;
+            padding: 2rem;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            position: relative;
+            overflow: hidden;
+        }
+
+            .section::before {
+                content: '';
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 4px;
+                height: 100%;
+                background: linear-gradient(135deg, #667eea, #764ba2);
+            }
+
+        .section-title {
+            font-size: 2.5rem;
+            color: #667eea;
+            margin-bottom: 1.5rem;
+            text-align: center;
+            position: relative;
+        }
+
+            .section-title::after {
+                content: '';
+                position: absolute;
+                bottom: -10px;
+                left: 50%;
+                transform: translateX(-50%);
+                width: 80px;
+                height: 3px;
+                background: linear-gradient(135deg, #667eea, #764ba2);
+                border-radius: 2px;
+            }
+
+        .quote-box {
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            color: white;
+            padding: 2rem;
+            margin: 2rem 0;
+            border-radius: 15px;
+            border-left: 5px solid rgba(255,255,255,0.5);
+            position: relative;
+            overflow: hidden;
+        }
+
+            .quote-box::before {
+                content: '"';
+                font-size: 4rem;
+                position: absolute;
+                top: 10px;
+                left: 20px;
+                opacity: 0.3;
+            }
+
+        .quote-text {
+            font-style: italic;
+            font-size: 1.2rem;
+            margin-bottom: 1rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .quote-author {
+            text-align: right;
+            font-weight: bold;
+            position: relative;
+            z-index: 1;
+        }
+
+        .timeline {
+            position: relative;
+            padding-left: 2rem;
+        }
+
+            .timeline::before {
+                content: '';
+                position: absolute;
+                left: 0;
+                top: 0;
+                bottom: 0;
+                width: 3px;
+                background: linear-gradient(135deg, #667eea, #764ba2);
+            }
+
+        .timeline-item {
+            position: relative;
+            margin-bottom: 2rem;
+            padding: 1.5rem;
+            background: rgba(102,126,234,0.05);
+            border-radius: 10px;
+            transition: transform 0.3s ease;
+        }
+
+            .timeline-item:hover {
+                transform: translateX(10px);
+            }
+
+            .timeline-item::before {
+                content: '';
+                position: absolute;
+                left: -2.75rem;
+                top: 1.5rem;
+                width: 15px;
+                height: 15px;
+                background: #667eea;
+                border-radius: 50%;
+                box-shadow: 0 0 0 4px white, 0 0 0 8px #667eea;
+            }
+
+        .year {
+            font-weight: bold;
+            color: #667eea;
+            font-size: 1.2rem;
+        }
+
+        .works-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .work-card {
+            background: linear-gradient(135deg, rgba(102,126,234,0.1), rgba(118,75,162,0.1));
+            padding: 2rem;
+            border-radius: 15px;
+            border: 1px solid rgba(102,126,234,0.2);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+            .work-card::before {
+                content: '';
+                position: absolute;
+                top: -50%;
+                left: -50%;
+                width: 200%;
+                height: 200%;
+                background: radial-gradient(circle, rgba(102,126,234,0.1) 0%, transparent 70%);
+                transform: scale(0);
+                transition: transform 0.3s ease;
+            }
+
+            .work-card:hover::before {
+                transform: scale(1);
+            }
+
+            .work-card:hover {
+                transform: translateY(-5px);
+                box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+            }
+
+        .work-title {
+            font-size: 1.4rem;
+            color: #667eea;
+            margin-bottom: 1rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .work-description {
+            margin-bottom: 1.5rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .links {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .link-btn {
+            display: inline-block;
+            padding: 0.5rem 1rem;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            text-decoration: none;
+            border-radius: 25px;
+            font-size: 0.9rem;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+            .link-btn::before {
+                content: '';
+                position: absolute;
+                top: 0;
+                left: -100%;
+                width: 100%;
+                height: 100%;
+                background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+                transition: left 0.5s;
+            }
+
+            .link-btn:hover::before {
+                left: 100%;
+            }
+
+            .link-btn:hover {
+                transform: translateY(-2px);
+                box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+            }
+
+        .influences-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .influence-card {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            border-top: 4px solid #667eea;
+            transition: transform 0.3s ease;
+        }
+
+            .influence-card:hover {
+                transform: translateY(-5px);
+            }
+
+        .influence-name {
+            font-weight: bold;
+            color: #667eea;
+            margin-bottom: 0.5rem;
+        }
+
+        .references-list {
+            display: grid;
+            gap: 1rem;
+            margin-top: 2rem;
+        }
+
+        .reference-item {
+            background: rgba(102,126,234,0.05);
+            padding: 1.5rem;
+            border-radius: 10px;
+            border-left: 4px solid #667eea;
+            transition: all 0.3s ease;
+        }
+
+            .reference-item:hover {
+                background: rgba(102,126,234,0.1);
+                transform: translateX(5px);
+            }
+
+            .reference-item a {
+                color: #667eea;
+                text-decoration: none;
+                font-weight: 600;
+            }
+
+                .reference-item a:hover {
+                    text-decoration: underline;
+                }
+
+        footer {
+            background: linear-gradient(135deg, #2c3e50, #34495e);
+            color: white;
+            text-align: center;
+            padding: 2rem 0;
+            margin-top: 3rem;
+        }
+
+        @media (max-width: 768px) {
+            .hero-title {
+                font-size: 2.5rem;
+            }
+
+            .nav-links {
+                flex-direction: column;
+                align-items: center;
+                gap: 1rem;
+            }
+
+            .section {
+                margin: 2rem 0;
+                padding: 1.5rem;
+            }
+
+            .works-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1 class="hero-title">EPICURO</h1>
+            <p class="hero-subtitle">Filósofo del Jardín • 341-270 a.C. • Padre del Hedonismo Filosófico</p>
+        </div>
+    </header>
+
+    <nav class="nav-menu">
+        <div class="container">
+            <div class="nav-links">
+                <a href="#biografia">Biografía</a>
+                <a href="#pensamiento">Pensamiento</a>
+                <a href="#obras">Obras</a>
+                <a href="#influencias">Influencias</a>
+                <a href="#contexto">Contexto Histórico</a>
+                <a href="#referencias">Referencias</a>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container">
+        <section id="biografia" class="section">
+            <h2 class="section-title">Biografía</h2>
+
+            <div class="quote-box">
+                <p class="quote-text">La muerte no es nada para nosotros, porque mientras existimos, la muerte no está presente, y cuando la muerte está presente, nosotros no existimos.</p>
+                <p class="quote-author">— Epicuro, Carta a Meneceo</p>
+            </div>
+
+            <p>Epicuro de Samos (341-270 a.C.) fue uno de los filósofos más influyentes de la Antigüedad griega y el fundador de la escuela epicúrea. Nacido en la isla de Samos durante el período helenístico, vivió en una época de grandes transformaciones políticas y sociales que siguieron a la muerte de Alejandro Magno.</p>
+
+            <div class="timeline">
+                <div class="timeline-item">
+                    <div class="year">341 a.C.</div>
+                    <p>Nace en Samos, hijo de padres atenienses. Su padre Neocles era maestro de escuela y su madre Queréstrata era sacerdotisa.</p>
+                </div>
+                <div class="timeline-item">
+                    <div class="year">323 a.C.</div>
+                    <p>Tras la muerte de Alejandro Magno, su familia es expulsada de Samos. Se traslada a Atenas para cumplir su servicio militar.</p>
+                </div>
+                <div class="timeline-item">
+                    <div class="year">311 a.C.</div>
+                    <p>Funda su primera escuela filosófica en Mitilene, en la isla de Lesbos.</p>
+                </div>
+                <div class="timeline-item">
+                    <div class="year">306 a.C.</div>
+                    <p>Establece el famoso "Jardín" (Kêpos) en Atenas, una comunidad filosófica que incluía hombres, mujeres y esclavos.</p>
+                </div>
+                <div class="timeline-item">
+                    <div class="year">270 a.C.</div>
+                    <p>Muere en Atenas tras una larga enfermedad, dejando un legado de más de 300 obras escritas.</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="pensamiento" class="section">
+            <h2 class="section-title">Pensamiento Filosófico</h2>
+
+            <h3 style="color: #667eea; font-size: 1.8rem; margin: 2rem 0 1rem 0;">El Hedonismo Epicúreo</h3>
+            <p>Epicuro desarrolló una filosofía hedonista sofisticada que buscaba la felicidad a través del placer, pero no cualquier placer. Su concepto de hedonismo era refinado y intelectual, priorizando los placeres del alma sobre los del cuerpo.</p>
+
+            <div class="quote-box">
+                <p class="quote-text">El placer es el principio y el fin de la felicidad. Lo reconocemos como el bien primero y connatural, y a partir de él hacemos todo juicio sobre el bien, y a él volvemos juzgando todo bien por la sensación como norma.</p>
+                <p class="quote-author">— Epicuro, Carta a Meneceo</p>
+            </div>
+
+            <h3 style="color: #667eea; font-size: 1.8rem; margin: 2rem 0 1rem 0;">La Ataraxia - Tranquilidad del Alma</h3>
+            <p>El objetivo último de la filosofía epicúrea era alcanzar la <em>ataraxia</em> (tranquilidad) y la <em>aponía</em> (ausencia de dolor). Para Epicuro, estos estados representaban la verdadera felicidad.</p>
+
+            <div class="quote-box">
+                <p class="quote-text">Cuando decimos que el placer es el fin, no nos referimos a los placeres de los disolutos ni a los que consisten en el goce sensual, sino al hallarnos libres de dolor en el cuerpo y de turbación en el alma.</p>
+                <p class="quote-author">— Epicuro, Carta a Meneceo</p>
+            </div>
+
+            <h3 style="color: #667eea; font-size: 1.8rem; margin: 2rem 0 1rem 0;">El Tetrafármaco - Los Cuatro Remedios</h3>
+            <p>Epicuro resumió su filosofía práctica en cuatro máximas fundamentales conocidas como el Tetrafármaco:</p>
+            <ul style="margin: 1rem 0; padding-left: 2rem;">
+                <li><strong>No temer a los dioses:</strong> Los dioses existen pero no intervienen en los asuntos humanos</li>
+                <li><strong>No temer a la muerte:</strong> La muerte es simplemente la ausencia de sensación</li>
+                <li><strong>El bien es fácil de alcanzar:</strong> Los placeres verdaderos son simples y naturales</li>
+                <li><strong>El mal es fácil de soportar:</strong> El dolor intenso es breve, el duradero es leve</li>
+            </ul>
+
+            <h3 style="color: #667eea; font-size: 1.8rem; margin: 2rem 0 1rem 0;">Atomismo y Materialismo</h3>
+            <p>Epicuro adoptó y modificó la teoría atomista de Demócrito, proponiendo que todo en el universo está compuesto por átomos que se mueven en el vacío. Esta visión materialista eliminaba el temor a la intervención divina caprichosa.</p>
+
+            <div class="quote-box">
+                <p class="quote-text">Nada surge de la nada, pues si así fuera, todo podría nacer de todo sin necesidad de semillas.</p>
+                <p class="quote-author">— Epicuro, Carta a Heródoto</p>
+            </div>
+        </section>
+
+        <section id="obras" class="section">
+            <h2 class="section-title">Obras Principales</h2>
+
+            <p>Epicuro fue extremadamente prolífico, escribiendo más de 300 obras según Diógenes Laercio. Lamentablemente, solo se conservan tres cartas completas y algunas máximas. Sus obras principales incluyen:</p>
+
+            <div class="works-grid">
+                <div class="work-card">
+                    <h3 class="work-title">Carta a Meneceo</h3>
+                    <p class="work-description">La obra más importante conservada de Epicuro, donde expone su ética y su filosofía de vida. Contiene sus famosas reflexiones sobre la muerte, el placer y la felicidad.</p>
+                    <div class="links">
+                        <a href="https://www.gutenberg.org/ebooks/author/1900" class="link-btn" target="_blank">Project Gutenberg</a>
+                        <a href="https://archive.org/search.php?query=epicuro%20carta%20meneceo" class="link-btn" target="_blank">Archive.org</a>
+                        <a href="https://www.amazon.es/s?k=epicuro+carta+meneceo" class="link-btn" target="_blank">Amazon ES</a>
+                    </div>
+                </div>
+
+                <div class="work-card">
+                    <h3 class="work-title">Carta a Heródoto</h3>
+                    <p class="work-description">Exposición de su física atomista y cosmología. En esta carta, Epicuro explica su teoría de los átomos y el vacío, fundamental para comprender su materialismo.</p>
+                    <div class="links">
+                        <a href="https://archive.org/search.php?query=epicuro%20herodoto" class="link-btn" target="_blank">Archive.org</a>
+                        <a href="https://www.amazon.es/s?k=epicuro+carta+herodoto" class="link-btn" target="_blank">Amazon ES</a>
+                    </div>
+                </div>
+
+                <div class="work-card">
+                    <h3 class="work-title">Carta a Pitocles</h3>
+                    <p class="work-description">Tratado sobre fenómenos astronómicos y meteorológicos. Epicuro explica diversos fenómenos naturales desde su perspectiva materialista y atomista.</p>
+                    <div class="links">
+                        <a href="https://archive.org/search.php?query=epicuro%20pitocles" class="link-btn" target="_blank">Archive.org</a>
+                        <a href="https://www.amazon.es/s?k=epicuro+carta+pitocles" class="link-btn" target="_blank">Amazon ES</a>
+                    </div>
+                </div>
+
+                <div class="work-card">
+                    <h3 class="work-title">Máximas Capitales</h3>
+                    <p class="work-description">Colección de 40 aforismos que resumen los principios fundamentales de la filosofía epicúrea. Constituyen un compendio práctico de su pensamiento ético.</p>
+                    <div class="links">
+                        <a href="https://www.gutenberg.org/ebooks/search/?query=epicurus+maxims" class="link-btn" target="_blank">Project Gutenberg</a>
+                        <a href="https://www.amazon.es/s?k=epicuro+máximas+capitales" class="link-btn" target="_blank">Amazon ES</a>
+                    </div>
+                </div>
+
+                <div class="work-card">
+                    <h3 class="work-title">Sobre la Naturaleza (Perdida)</h3>
+                    <p class="work-description">Su obra más extensa en 37 libros, de la cual solo se conservan fragmentos papiráceos de Herculano. Contenía su filosofía natural completa.</p>
+                    <div class="links">
+                        <a href="https://www.amazon.es/s?k=epicuro+sobre+naturaleza+fragmentos" class="link-btn" target="_blank">Amazon ES</a>
+                        <a href="https://archive.org/search.php?query=epicurus%20nature%20herculaneum" class="link-btn" target="_blank">Archive.org</a>
+                    </div>
+                </div>
+
+                <div class="work-card">
+                    <h3 class="work-title">Recopilaciones Modernas</h3>
+                    <p class="work-description">Ediciones contemporáneas que reúnen todos los fragmentos y testimonios conservados de Epicuro, incluyendo los papiros de Herculano.</p>
+                    <div class="links">
+                        <a href="https://www.amazon.es/s?k=epicuro+obras+completas+fragmentos" class="link-btn" target="_blank">Amazon ES</a>
+                        <a href="https://www.amazon.es/s?k=epicuro+ética+gredos" class="link-btn" target="_blank">Ed. Gredos</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="influencias" class="section">
+            <h2 class="section-title">Influencias Recibidas y Ejercidas</h2>
+
+            <h3 style="color: #667eea; font-size: 1.8rem; margin: 2rem 0 1rem 0;">Influencias Recibidas</h3>
+            <div class="influences-grid">
+                <div class="influence-card">
+                    <div class="influence-name">Demócrito (460-370 a.C.)</div>
+                    <p>Epicuro adoptó y modificó la teoría atomista de Demócrito, añadiendo el concepto del "clinamen" o desviación espontánea de los átomos para explicar el libre albedrío.</p>
+                </div>
+                <div class="influence-card">
+                    <div class="influence-name">Aristipo de Cirene (435-350 a.C.)</div>
+                    <p>Fundador de la escuela cirenaica y defensor del hedonismo. Epicuro refinó sus ideas sobre el placer, desarrollando una versión más sofisticada del hedonismo.</p>
+                </div>
+                <div class="influence-card">
+                    <div class="influence-name">Pirrón de Elis (360-270 a.C.)</div>
+                    <p>El fundador del escepticismo influyó en la búsqueda epicúrea de la ataraxia como ideal de tranquilidad mental.</p>
+                </div>
+            </div>
+
+            <h3 style="color: #667eea; font-size: 1.8rem; margin: 2rem 0 1rem 0;">Influencias Ejercidas</h3>
+            <div class="influences-grid">
+                <div class="influence-card">
+                    <div class="influence-name">Lucrecio (99-55 a.C.)</div>
+                    <p>Poeta romano que divulgó la filosofía epicúrea en su obra "De Rerum Natura", siendo el principal transmisor del epicureísmo al mundo romano.</p>
+                </div>
+                <div class="influence-card">
+                    <div class="influence-name">Diógenes de Enoanda (s. II d.C.)</div>
+                    <p>Epicúreo que mandó grabar las enseñanzas de Epicuro en piedra en una gran inscripción pública, conservando valiosos fragmentos de su filosofía.</p>
+                </div>
+                <div class="influence-card">
+                    <div class="influence-name">Filosofía Moderna</div>
+                    <p>Influyó en pensadores como Hobbes, Locke, Bentham y Mill en el desarrollo del utilitarismo y las teorías del placer en la ética moderna.</p>
+                </div>
+                <div class="influence-card">
+                    <div class="influence-name">Ilustración Francesa</div>
+                    <p>Voltaire, Diderot y otros ilustrados recuperaron el materialismo epicúreo como alternativa al dogma religioso, influyendo en el pensamiento secular moderno.</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="contexto" class="section">
+            <h2 class="section-title">Contexto Histórico y Filosófico</h2>
+
+            <h3 style="color: #667eea; font-size: 1.8rem; margin: 2rem 0 1rem 0;">El Período Helenístico</h3>
+            <p>Epicuro vivió durante el período helenístico (323-146 a.C.), una época marcada por la fragmentación del imperio de Alejandro Magno y la pérdida de la independencia de las ciudades-estado griegas. Este contexto de incertidumbre política influyó profundamente en su filosofía.</p>
+
+            <div class="quote-box">
+                <p class="quote-text">El sabio, una vez que ha alcanzado la sabiduría, no la pierde jamás, ni siquiera puede fingir locura.</p>
+                <p class="quote-author">— Epicuro, Máximas Capitales</p>
+            </div>
+
+            <h3 style="color: #667eea; font-size: 1.8rem; margin: 2rem 0 1rem 0;">Las Escuelas Helenísticas</h3>
+            <p>El epicureísmo fue una de las tres grandes escuelas filosóficas del período helenístico, junto con el estoicismo y el escepticismo. Todas compartían el objetivo de alcanzar la tranquilidad mental, pero diferían en sus métodos:</p>
+
+            <div style="margin: 2rem 0;">
+                <h4 style="color: #764ba2; margin: 1rem 0;">Epicureísmo vs Estoicismo</h4>
+                <p>Mientras los epicúreos buscaban el placer y evitaban el dolor, los estoicos promovían la aceptación racional del destino y la virtud como único bien verdadero.</p>
+
+                <h4 style="color: #764ba2; margin: 1rem 0;">El Jardín de Epicuro</h4>
+                <p>A diferencia de otras escuelas, el Jardín era una comunidad cerrada que incluía mujeres y esclavos, revolucionario para la época. Era más una comunidad de vida que una escuela académica.</p>
+            </div>
+
+            <h3 style="color: #667eea; font-size: 1.8rem; margin: 2rem 0 1rem 0;">Legado y Persecución</h3>
+            <p>El epicureísmo fue malinterpretado y perseguido por el cristianismo primitivo, que lo asoció erróneamente con la libertinaje. San Jerónimo llegó a llamar a Epicuro "maestro de la voluptuosidad". Esta distorsión afectó su recepción durante siglos.</p>
+        </section>
+
+        <section id="referencias" class="section">
+            <h2 class="section-title">Referencias y Fuentes</h2>
+
+            <h3 style="color: #667eea; font-size: 1.8rem; margin: 2rem 0 1rem 0;">Fuentes Académicas</h3>
